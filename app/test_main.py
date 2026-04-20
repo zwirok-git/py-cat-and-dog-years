@@ -23,13 +23,12 @@ def test_get_human_age(cat_age: int, dog_age: int, expected: list) -> None:
 
 @pytest.mark.parametrize(
     "age_before_boundary, age_on_boundary, "
-    "expected_before_boundary, expected_on_boundary",
-    [
-    (14, 15, [0, 0], [1, 1]),
-    (23, 24, [1, 1], [2, 2]),
-    (27, 28, [2, 2], [3, 2]),
-    (28, 29, [3, 2], [3, 3]),
-],
+    "expected_before_boundary, expected_on_boundary", [
+        (14, 15, [0, 0], [1, 1]),
+        (23, 24, [1, 1], [2, 2]),
+        (27, 28, [2, 2], [3, 2]),
+        (28, 29, [3, 2], [3, 3]),
+    ],
     ids=[
         "first_year",
         "second_year",
