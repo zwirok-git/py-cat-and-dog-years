@@ -5,15 +5,11 @@ import pytest
 @pytest.mark.parametrize("cat_age, dog_age, expected", [
     (-1, -1, [0, 0]),
     (0, 0, [0, 0]),
-    (23, 23, [1, 1]),
-    (28, 28, [3, 2]),
     (100, 100, [21, 17]),
 ],
     ids=[
         "negative_input",
         "zero_input",
-        "boundary_23",
-        "boundary_28",
         "large_input_100",
 ]
 )
@@ -50,6 +46,25 @@ def test_get_human_age_boundaries(
         get_human_age(age_on_boundary, age_on_boundary)
         == expected_on_boundary
     )
+
+
+@pytest.mark.parametrize(
+    "cat_age, dog_age, expected",
+    [
+        (15.1, 15.1, [1, 1]),
+        (15.9, 15.9, [1, 1]),
+    ],
+    ids=[
+        "fractional_age_15_1",
+        "fractional_age_15_9",
+    ]
+)
+def test_get_human_age_discards_fractional_remainder(
+    cat_age: float,
+    dog_age: float,
+    expected: list,
+) -> None:
+    assert get_human_age(cat_age, dog_age) == expected
 
 
 def test_type_error_when_input_is_string() -> None:
